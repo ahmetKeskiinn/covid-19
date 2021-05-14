@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="example.com.covid19.Views.Fragments.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="example.com.covid19.Views.Fragments.HistoryFragment"
+        android:label="@string/history"
+        tools:layout="@layout/history_fragment" />
+
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="example.com.covid19.Views.Fragments.StatisticsFragment"
+        android:label="@string/statistics"
+        tools:layout="@layout/statistics_fragment" >
+        <action
+            android:id="@+id/action_nav_slideshow_to_countryStatistics"
+            app:destination="@id/countryStatistics" />
+    </fragment>
+    <fragment
+        android:id="@+id/countryStatistics"
+        android:name="example.com.covid19.Views.Fragments.CountryStatistics"
+        android:label="fragment_country_statistics"
+        tools:layout="@layout/fragment_country_statistics" />
+</navigation>
