@@ -1,17 +1,14 @@
 package example.com.covid19.Views.Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,6 +32,7 @@ public class StatisticsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.statistics_fragment, container, false);
+        sendToast();
         initialUI();
         initialViewModel();
         initRecycler();
@@ -53,6 +51,9 @@ public class StatisticsFragment extends Fragment {
                 adapter.submitList(countryModels);
             }
         });
+    }
+    private void sendToast(){
+        Toast.makeText(this.root.getContext(),getString(R.string.statisticFragmentToast),Toast.LENGTH_SHORT).show();
     }
     private void initRecycler(){
         countryRecycler.setOverScrollMode(View.OVER_SCROLL_NEVER);

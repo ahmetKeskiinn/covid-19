@@ -7,9 +7,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import example.com.covid19.DataBases.History.HistoryDao;
-import example.com.covid19.DataBases.History.HistoryDataBase;
-import example.com.covid19.DataBases.History.HistoryModel;
+
 
 public class CountryRepository {
     private CountryDao countryDao;

@@ -14,7 +14,6 @@ import example.com.covid19.DataBases.History.HistoryModel;
 import example.com.covid19.DataBases.Statistics.StatisticsModel;
 import example.com.covid19.DataBases.Statistics.StatisticsRepository;
 import example.com.covid19.Models.StatisticsModels.ExampleStatistics;
-import example.com.covid19.Models.StatisticsModels.ResponseStatistics;
 import example.com.covid19.Utils.Api;
 import example.com.covid19.Utils.ApiServices.GetService;
 import retrofit2.Call;
@@ -47,11 +46,7 @@ public class StatisticsViewModel extends AndroidViewModel {
         call.enqueue(new Callback<ExampleStatistics>() {
             @Override
             public void onResponse(Call<ExampleStatistics> call, Response<ExampleStatistics> response) {
-                Log.d("TAG", "onResponse:---------------------------->>>>>>>> "+ response.code());
-                Log.d("TAG", "onResponse: " + response.message());
-                Log.d("TAG", "onResponse: "+ response.body().getResponse().get(0).getTests().getTotal());
-               // Log.d("TAG", "onResponse: " + response.body().getTests().getTotal().toString());
-                Log.d("TAG", "onResponse:sadasdasda ");
+
                 if (response.isSuccessful()) {
                     if (response != null) {
                         String continent;

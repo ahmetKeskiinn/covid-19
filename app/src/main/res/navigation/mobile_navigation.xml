@@ -29,6 +29,6 @@
     <fragment
         android:id="@+id/countryStatistics"
         android:name="example.com.covid19.Views.Fragments.CountryStatistics"
-        android:label="fragment_country_statistics"
+        android:label="@string/countryInfo"
         tools:layout="@layout/fragment_country_statistics" />
 </navigation>

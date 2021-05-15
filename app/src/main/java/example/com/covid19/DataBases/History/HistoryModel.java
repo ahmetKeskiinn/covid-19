@@ -2,7 +2,6 @@ package example.com.covid19.DataBases.History;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
 @Entity(tableName = "history_table", primaryKeys = {"day", "time","country"})
 public class HistoryModel {

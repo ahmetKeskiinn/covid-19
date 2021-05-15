@@ -5,8 +5,6 @@ import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
-import java.util.List;
-
 
 public class StatisticsRepository {
     private StatisticsDao statisticsDao;

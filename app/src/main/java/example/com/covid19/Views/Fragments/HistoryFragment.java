@@ -3,7 +3,6 @@ package example.com.covid19.Views.Fragments;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +24,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import example.com.covid19.Adapters.RecyclerViewAdapter;
 import example.com.covid19.DataBases.Country.CountryModel;
@@ -44,7 +42,7 @@ public class HistoryFragment extends Fragment implements View.OnClickListener , 
     private View root;
     private RecyclerViewAdapter adapter;
     private ArrayList<String> paths;
-
+    private String currentCountry;
     private String[] list;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -53,14 +51,13 @@ public class HistoryFragment extends Fragment implements View.OnClickListener , 
 
         initialViewModel();
         initialUI();
-        //fetchTeams();
-        //initRecycler();
         initSpinner();
         return root;
     }
     private void initialUI(){
     btnDatePicker = root.findViewById(R.id.dateTimePicker);
     btnDatePicker.setOnClickListener(this::onClick);
+
     country = root.findViewById(R.id.countrySpinner);
     country.setOnItemSelectedListener(this);
     content = root.findViewById(R.id.contentRecycler);
@@ -81,20 +78,16 @@ public class HistoryFragment extends Fragment implements View.OnClickListener , 
         content.setLayoutManager(new LinearLayoutManager(getContext()));
         content.setNestedScrollingEnabled(false);
         content.setAdapter(adapter);
-
-        historyViewModel.getAllTeamFixture(country).observe(getViewLifecycleOwner(), new Observer<List<HistoryModel>>() {
+        historyViewModel.getmAllHistory().observe(getViewLifecycleOwner(), new Observer<List<HistoryModel>>() {
             @Override
             public void onChanged(List<HistoryModel> historyModels) {
-                Log.d("TAG", "onChanged: "+ historyModels.size());
-                        adapter.submitList(historyModels);
+                adapter.submitList(historyModels);
             }
         });
     }
 
 
     private void initSpinner(){
-
-
         homeViewModel.getmAllCountries().observe(getViewLifecycleOwner(), new Observer<List<CountryModel>>() {
             @Override
             public void onChanged(List<CountryModel> countryModels) {
@@ -110,7 +103,6 @@ public class HistoryFragment extends Fragment implements View.OnClickListener , 
         }
         ArrayAdapter aa = new ArrayAdapter(HistoryFragment.this.getContext(),android.R.layout.simple_spinner_item,list);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //Setting the ArrayAdapter data on the Spinner
         country.setAdapter(aa);
     }
 
@@ -129,14 +121,27 @@ public class HistoryFragment extends Fragment implements View.OnClickListener , 
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
                             String tem = String.valueOf(monthOfYear+1);
-                            if((tem.length()<2)){
-                                String newMonth="0"+String.valueOf(monthOfYear+1);
-                                        btnDatePicker.setText(year + "-" + newMonth + "-" + dayOfMonth);
-                            }
-                            else {
-                                btnDatePicker.setText(year + "-" + monthOfYear+1 + "-" + dayOfMonth);
+                            String tempDay = String.valueOf(dayOfMonth);
+                            if(tem.length()<2 || tempDay.length()<2){
+                                if((tem.length()<2)){
+                                    tem="0"+tem;
+                                    String settext = year+"-"+tem+"-"+tempDay;
+
+                                    btnDatePicker.setText(settext);
+                                }
+                                else {
+                                    btnDatePicker.setText(year + "-" + monthOfYear+1 + "-" + tempDay);
+                                }
+                                if((tempDay.length()<2)){
+                                    tempDay="0"+tempDay;
+                                    btnDatePicker.setText(year + "-" + tem + "-" + tempDay);
+                                }
+                                else {
+                                    btnDatePicker.setText(year + "-" + tem+ "-" + tempDay);
+                                }
                             }
 
+                            initRecycler(currentCountry,btnDatePicker.getText().toString());
                         }
                     }, mYear, mMonth, mDay);
             datePickerDialog.show();
@@ -146,7 +151,7 @@ public class HistoryFragment extends Fragment implements View.OnClickListener , 
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-       // updateLabel();
+        currentCountry = list[position];
         if(btnDatePicker.getText().toString().equals("")){
             String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
             btnDatePicker.setText(currentDate);
@@ -157,7 +162,6 @@ public class HistoryFragment extends Fragment implements View.OnClickListener , 
             initRecycler(list[position],btnDatePicker.getText().toString());
             country.setSelection(position);
         }
-        Log.d("TAG", "onItemSelected:----------------------------------------------->>>>>>" + list[position]);
     }
 
     @Override

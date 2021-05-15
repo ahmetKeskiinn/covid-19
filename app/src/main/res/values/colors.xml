@@ -8,12 +8,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="mainColor">#DA2C1E</color>
-    <color name="countryColor">#660099</color>
+    <color name="countryColor">#4D7074</color>
     <color name="deathsColor">#BA0808</color>
     <color name="deathsSubColor">#DA2C1E</color>
     <color name="testColor">#01680C</color>
     <color name="testSubColor">#13C426</color>
     <color name="caseColor">#022C74</color>
     <color name="caseSubColor">#135EDE</color>
+    <color name="rawColor">#FAF3F6</color>
 
 </resources>

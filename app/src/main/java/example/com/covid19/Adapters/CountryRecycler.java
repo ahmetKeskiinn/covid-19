@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import example.com.covid19.DataBases.Country.CountryModel;
-import example.com.covid19.DataBases.History.HistoryModel;
 import example.com.covid19.R;
 
 public class CountryRecycler extends ListAdapter<CountryModel, CountryRecycler.CountryHolder> {

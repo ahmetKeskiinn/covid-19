@@ -3,23 +3,19 @@ package example.com.covid19.Views.Fragments;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.List;
 
 import example.com.covid19.DataBases.Statistics.StatisticsModel;
 import example.com.covid19.R;
-import example.com.covid19.ViewModels.HomeViewModel;
 import example.com.covid19.ViewModels.StatisticsViewModel;
 
 
@@ -37,7 +33,6 @@ public class CountryStatistics extends Fragment {
         String object =  bundle.getString("name");
         country.setText(object);
         slideshowViewModel.fetchCountries(object);
-
         initialViewModel();
         return root;
     }
@@ -59,18 +54,9 @@ public class CountryStatistics extends Fragment {
     }
     private void initialViewModel(){
         slideshowViewModel = ViewModelProviders.of(this).get(StatisticsViewModel.class);
-       // slideshowViewModel.fetchCountries(country.getText().toString());
-        //Log.d("TAG", "initialViewModel: "+ data.get(5));
         slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<StatisticsModel>() {
             @Override
             public void onChanged(StatisticsModel statisticsModel) {
-                Log.d("TAG", "onChanged: ");
-            }
-        });
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<StatisticsModel>() {
-            @Override
-            public void onChanged(StatisticsModel statisticsModel) {
-                Log.d("TAG", "onChanged:--------+-+-+-+-+-+-+ " + statisticsModel.getDay());
                 try {
                     continent.setText(statisticsModel.getContinent());
                 } catch (Exception e) {

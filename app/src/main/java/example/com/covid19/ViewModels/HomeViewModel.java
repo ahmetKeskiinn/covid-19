@@ -1,25 +1,20 @@
 package example.com.covid19.ViewModels;
 
 import android.app.Application;
-import android.os.Handler;
-import android.util.Log;
-import android.widget.Toast;
+
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProviders;
+
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import example.com.covid19.DataBases.Country.CountryModel;
 import example.com.covid19.DataBases.Country.CountryRepository;
 import example.com.covid19.DataBases.History.HistoryModel;
 import example.com.covid19.Models.CountryModel.ExampleResponse;
-import example.com.covid19.Models.HistoryModels.Example;
 import example.com.covid19.Utils.Api;
 import example.com.covid19.Utils.ApiServices.GetService;
 import retrofit2.Call;
@@ -62,7 +57,7 @@ public class HomeViewModel extends AndroidViewModel {
                         }
                     }
                     else{
-                        // Toast.makeText(getApplication().getBaseContext(),getString(R.string.wentwrong),Toast.LENGTH_SHORT).show();
+
                     }
                 }
 

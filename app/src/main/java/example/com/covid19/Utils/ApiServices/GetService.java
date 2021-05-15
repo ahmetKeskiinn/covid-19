@@ -1,10 +1,8 @@
 package example.com.covid19.Utils.ApiServices;
 
-import example.com.covid19.DataBases.History.HistoryModel;
 import example.com.covid19.Models.CountryModel.ExampleResponse;
 import example.com.covid19.Models.HistoryModels.Example;
 import example.com.covid19.Models.StatisticsModels.ExampleStatistics;
-import example.com.covid19.Models.StatisticsModels.ResponseStatistics;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;

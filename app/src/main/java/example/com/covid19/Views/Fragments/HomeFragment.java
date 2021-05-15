@@ -1,17 +1,14 @@
 package example.com.covid19.Views.Fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,11 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import example.com.covid19.Adapters.CountryRecycler;
-import example.com.covid19.Adapters.RecyclerViewAdapter;
 import example.com.covid19.DataBases.Country.CountryModel;
-import example.com.covid19.DataBases.History.HistoryModel;
 import example.com.covid19.R;
-import example.com.covid19.ViewModels.HistoryViewModel;
 import example.com.covid19.ViewModels.HomeViewModel;
 
 public class HomeFragment extends Fragment {
@@ -36,13 +30,8 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         root = inflater.inflate(R.layout.fragment_home, container, false);
+        sendToast();
         initialViewModel();
-  /*      homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });*/
         initialUI();
         initialViewModel();
         initRecycler();
@@ -51,6 +40,9 @@ public class HomeFragment extends Fragment {
     private void initialUI(){
         countryView = root.findViewById(R.id.countryRecycler);
         adapter = new CountryRecycler();
+    }
+    private void sendToast(){
+        Toast.makeText(this.root.getContext(),getString(R.string.homeFragmentToast),Toast.LENGTH_SHORT).show();
     }
     private void initRecycler(){
         homeViewModel.fetchCountries();
@@ -71,12 +63,7 @@ public class HomeFragment extends Fragment {
     }
     private void initialViewModel(){
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
-        //homeViewModel.fetchCountries();
 
-        //homeViewModel.
-        /*homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
-    */
     }
 
 

@@ -48,10 +48,7 @@ public class RecyclerViewAdapter extends ListAdapter<HistoryModel, RecyclerViewA
         //Fixture currentTeam = getItem(position);
         String placeholder = holder.itemView.getContext().getResources().getString(R.string.noInfo);
         HistoryModel currentCountry = getItem(position);
-        Log.d(TAG, "onBindViewHolder: " + currentCountry.getCountry());
-        Log.d(TAG, "onBindViewHolder: " + position);
         holder.country.setText(currentCountry.getCountry().toString());
-        Log.d(TAG, "onBindViewHolder: " + currentCountry.getTime() +" " + currentCountry.getDay() + " " + currentCountry.getId());
         if(currentCountry.getCases() != null){
             holder.casesCount.setText(currentCountry.getCases().toString());
         }

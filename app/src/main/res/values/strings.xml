@@ -41,4 +41,11 @@
     <string name="day">Day</string>
     <string name="timeC">Time</string>
     <string name="totalDeaths">Total Deaths</string>
+    <string name="countryInfo">Country Informations</string>
+
+    <string name="mail">ahmetkeskiinnn@outlook.com</string>
+    <string name="sampleApp">Covid-19 Statistics For Countries</string>
+    <string name="statisticFragmentToast">Please click on the country whose statistics you want to view.</string>
+    <string name="homeFragmentToast">Countries, ships, islands available for viewing.</string>
+
 </resources>

@@ -26,24 +26,21 @@ public class HistoryViewModel extends AndroidViewModel {
 
     private static final String token = "966dd09665mshfee82873a81b1f5p1a2d3bjsnb22c69531b3e";
     private static final String host = "covid-193.p.rapidapi.com";
-    private MutableLiveData<String> mText;
+    private MutableLiveData<List<HistoryModel>> mText;
     private HistoryRepository mRepository;
     private LiveData<List<HistoryModel>> mAllHistory;
     private LiveData<List<HistoryModel>> histMod;
     public HistoryViewModel(Application application) {
         super(application);
-        //fetchTeams();
         mRepository = new HistoryRepository(application);
         mAllHistory = mRepository.getAllHistory();
+        mText = new MutableLiveData<>();
     }
 
 
-    public LiveData<List<HistoryModel>> getAllTeamFixture(String teamName){
-        return mRepository.selectedWeek(teamName);
-    }
     public LiveData<List<HistoryModel>> getmAllHistory() {
 
-        return mRepository.getAllHistory();
+        return mText;
     }
     public void deleteAll(String countryName){
         mRepository.deleteAll(countryName);
@@ -67,19 +64,17 @@ public class HistoryViewModel extends AndroidViewModel {
                         }
                     }
                     else{
-                       // Toast.makeText(getApplication().getBaseContext(),getString(R.string.wentwrong),Toast.LENGTH_SHORT).show();
                     }
                 }
+                mText.postValue(historyModelList);
 
             }
 
             @Override
             public void onFailure(Call<Example> call, Throwable t) {
-              //  Toast.makeText(getContext(),getString(R.string.wentwrong),Toast.LENGTH_SHORT).show();
             }
 
         });
-        //initRecycler(historyModelList);
     }
     public void insert(HistoryModel word) {
         mRepository.insert(word);

@@ -14,7 +14,6 @@ public class HistoryRepository {
     public HistoryRepository(Application application) {
         HistoryDataBase db = HistoryDataBase.getDatabase(application);
         historyDao = db.historyDao();
-       // allHistory =
     }
 
     public LiveData<List<HistoryModel>> getAllHistory() {
